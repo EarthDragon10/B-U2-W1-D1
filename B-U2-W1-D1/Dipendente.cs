@@ -17,5 +17,6 @@ namespace B_U2_W1_D1
         public int NumFigliCarico { get; set; }
         public string Mansione { get; set; }
         public static List<Dipendente> ListaDipendenti = new List<Dipendente>();
+        public static List<Dipendente> ListaDettaglioDipendente = new List<Dipendente>();
     }
 }

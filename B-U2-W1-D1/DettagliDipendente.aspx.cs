@@ -9,13 +9,15 @@ using System.Web.UI.WebControls;
 
 namespace B_U2_W1_D1
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class DettagliDipendente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            string IdDipendente = Request.QueryString["ID_Dipendente"];
+
+            if (!IsPostBack)
             {
-                Dipendente.ListaDipendenti.Clear();
+                Dipendente.ListaDettaglioDipendente.Clear();
                 SqlConnection connectionDB = new SqlConnection();
                 connectionDB.ConnectionString = ConfigurationManager.ConnectionStrings["CMS_Edile"].ToString();
 
@@ -26,16 +28,18 @@ namespace B_U2_W1_D1
                 {
 
                     SqlCommand command = new SqlCommand();
-                    command.CommandText = "Select * From Dipendente";
+                    command.Parameters.AddWithValue("@ID_Dipendente", IdDipendente);
+                    command.CommandText = "Select * From Dipendente Where ID_Dipendente = @ID_Dipendente";
                     command.Connection = connectionDB;
 
                     SqlDataReader reader = command.ExecuteReader();
+                    Dipendente dipendente = new Dipendente();
 
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
-                            Dipendente dipendente = new Dipendente();
+                            
                             dipendente.ID_Dipendente = Convert.ToInt32(reader["ID_Dipendente"]);
                             dipendente.Nome = reader["Nome"].ToString();
                             dipendente.Cognome = reader["Cognome"].ToString();
@@ -44,14 +48,20 @@ namespace B_U2_W1_D1
                             dipendente.Coniugato = Convert.ToBoolean(reader["Coniugato"]);
                             dipendente.NumFigliCarico = Convert.ToInt32(reader["NumFigliCarico"]);
                             dipendente.Mansione = reader["Mansione"].ToString();
-                            Dipendente.ListaDipendenti.Add(dipendente);
+                    
                         }
 
                     }
 
 
-                    GridView_Dipendenti.DataSource = Dipendente.ListaDipendenti;
-                    GridView_Dipendenti.DataBind();
+
+                    TD_Nomne.InnerText = dipendente.Nome;
+                    TD_Cognome.InnerText = dipendente.Cognome;
+                    TD_Indirizzo.InnerText = dipendente.Indirizzo;
+                    TD_CodiceFiscale.InnerText = dipendente.CodiceFiscale;
+                    TD_Coniugato.InnerText = dipendente.Coniugato.ToString();
+                    TD_NumFigliCarico.InnerText = dipendente.NumFigliCarico.ToString();
+                    TD_Mansione.InnerText = dipendente.Mansione;
 
 
                 }
@@ -62,22 +72,8 @@ namespace B_U2_W1_D1
 
                 connectionDB.Close();
             }
-            
-        }
 
-        protected void Btn_Dettagli_Click(object sender, EventArgs e)
-        {
-            Button DettagliBtn = (Button)sender;
-            int IdDipendente = Convert.ToInt32(DettagliBtn.CommandArgument);
-            Response.Redirect($"DettagliDipendente.aspx?ID_Dipendente={IdDipendente}");
-        }
-
-        protected void Btn_Dettagli_Click1(object sender, EventArgs e)
-        {
-            Button DettagliBtn = (Button)sender;
-            int IdDipendente = Convert.ToInt32(DettagliBtn.CommandArgument);
-            Response.Redirect($"DettagliDipendente.aspx?ID_Dipendente={IdDipendente}");
         }
     }
+    
 }
- 

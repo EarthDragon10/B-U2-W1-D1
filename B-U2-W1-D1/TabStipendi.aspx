@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="B_U2_W1_D1.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="TabStipendi.aspx.cs" Inherits="B_U2_W1_D1.TabStipendi" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container p-5">
+        <div class="container p-5">
         <asp:GridView ID="GridView_Dipendenti" ItemType="B_U2_W1_D1.Dipendente" AutoGenerateColumns="false"  CssClass="table table-bordered table-striped table-light" runat="server">
           <Columns>
 
