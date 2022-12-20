@@ -20,32 +20,41 @@ namespace B_U2_W1_D1
 
             connectionDB.Open();
 
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "Select * From Dipendente";
-            command.Connection = connectionDB;
+            try {
 
-            SqlDataReader reader = command.ExecuteReader();
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "Select * From Dipendente";
+                command.Connection = connectionDB;
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
                 {
-                    Dipendente dipendente = new Dipendente();
-                    dipendente.ID_Dipendente = Convert.ToInt32(reader["ID_Dipendente"]);
-                    dipendente.Nome = reader["Nome"].ToString();
-                    dipendente.Cognome = reader["Cognome"].ToString();
-                    dipendente.Indirizzo = reader["Indirizzo"].ToString();
-                    dipendente.CodiceFiscale = reader["CodiceFiscale"].ToString();
-                    dipendente.Coniugato = Convert.ToBoolean(reader["Coniugato"]);
-                    dipendente.NumFigliCarico = Convert.ToInt32(reader["NumFigliCarico"]);
-                    dipendente.Mansione = reader["Mansione"].ToString();
-                    Dipendente.ListaDipendenti.Add(dipendente);
+                    while (reader.Read())
+                    {
+                        Dipendente dipendente = new Dipendente();
+                        dipendente.ID_Dipendente = Convert.ToInt32(reader["ID_Dipendente"]);
+                        dipendente.Nome = reader["Nome"].ToString();
+                        dipendente.Cognome = reader["Cognome"].ToString();
+                        dipendente.Indirizzo = reader["Indirizzo"].ToString();
+                        dipendente.CodiceFiscale = reader["CodiceFiscale"].ToString();
+                        dipendente.Coniugato = Convert.ToBoolean(reader["Coniugato"]);
+                        dipendente.NumFigliCarico = Convert.ToInt32(reader["NumFigliCarico"]);
+                        dipendente.Mansione = reader["Mansione"].ToString();
+                        Dipendente.ListaDipendenti.Add(dipendente);
+                    }
+
                 }
 
+
+                GridView_Dipendenti.DataSource = Dipendente.ListaDipendenti;
+                GridView_Dipendenti.DataBind();
+                
+
+            } catch(Exception ex) {
+                connectionDB.Close();
             }
 
-            GridView_Dipendenti.DataSource = Dipendente.ListaDipendenti;
-            GridView_Dipendenti.DataBind();
             connectionDB.Close();
         }
 

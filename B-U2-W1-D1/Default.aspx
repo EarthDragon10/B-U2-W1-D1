@@ -10,44 +10,44 @@
 
                 <asp:TemplateField HeaderText="Nome">
                     <ItemTemplate>
-                        <p class="ps-2"><%#Item.Nome %></p>
+                        <p><%#Item.Nome %></p>
                     </ItemTemplate>              
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Cognome">
-                    <asp:ItemTemplate>
-                        <p class="ps-2"><%#Item.Cognome %></p>
-                    </asp:ItemTemplate>
+              <asp:TemplateField HeaderText="Nome2">
+                    <ItemTemplate>
+                        <p><%#Item.Nome %></p>
+                    </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Indirizzo">
-                    <asp:ItemTemplate>
-                        <p class="ps-2"><%#Item.Indirizzo %></p>
-                    </asp:ItemTemplate>
+                  <asp:TemplateField HeaderText="Indirizzo">
+                    <ItemTemplate>
+                        <p><%#Item.Indirizzo %></p>
+                    </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Codice Fiscale">
-                    <asp:ItemTemplate>
-                        <p class="ps-2"><%#Item.CodiceFiscale %></p>
-                    </asp:ItemTemplate>
+                    <ItemTemplate>
+                        <p><%#Item.CodiceFiscale %></p>
+                    </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Coniugato">
-                    <asp:ItemTemplate>
-                        <p><%#Item.Coniugato %></p>
-                    </asp:ItemTemplate>
+                    <ItemTemplate>
+                        <p><%#Item.Coniugato.ToString() %></p>
+                    </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Numero di Figli A Carico">
-                    <asp:ItemTemplate>
-                        <p class="ps-2"><%#Item.NumFigliCarico %></p>
-                    </asp:ItemTemplate>
+                    <ItemTemplate>
+                        <p><%#Item.NumFigliCarico %></p>
+                    </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Mansione">
-                    <asp:ItemTemplate>
-                        <p class="ps-2"><%#Item.Mansione %></p>
-                    </asp:ItemTemplate>
+                    <ItemTemplate>
+                        <p><%#Item.Mansione %></p>
+                    </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
